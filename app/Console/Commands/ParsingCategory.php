@@ -103,13 +103,11 @@ class ParsingCategory extends Command
 
 
                 if ($a == $razdel) {
-                    $g = DB::unprepared($sql);
-
-
-                    if ($g) {
-                        $csv_arr[] = array($b, $a);
+                    try {
+                        $g = DB::unprepared($sql);
+                    } catch (\Exception $exception) {
+                        exit();
                     }
-
                     $sql = null;
                     $a = null;
                     $b++;
@@ -121,7 +119,9 @@ class ParsingCategory extends Command
                 $d++;
 
             }
-
+            if (!is_null($sql)) {
+                $u = DB::unprepared($sql);
+            }
             fclose($h);
         }
 

@@ -14,12 +14,12 @@ class CreateProductTable extends Migration
     public function up()
     {
 
-        Schema::dropIfExists('product');
-        Schema::create('product', function (Blueprint $table) {
+        Schema::dropIfExists('products');
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
         });
-        \Illuminate\Support\Facades\DB::unprepared('ALTER TABLE `product` ROW_FORMAT = DYNAMIC');
-        Schema::table('product', function (Blueprint $table) {
+        \Illuminate\Support\Facades\DB::unprepared('ALTER TABLE `products` ROW_FORMAT = DYNAMIC');
+        Schema::table('products', function (Blueprint $table) {
             $table->string('type_id')->nullable();
             $table->string('sku')->nullable();
             $table->string('opera_sku')->nullable();
