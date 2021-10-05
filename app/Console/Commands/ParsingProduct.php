@@ -65,23 +65,11 @@ class ParsingProduct extends Command
 
     private function getParse($file = null): string
     {
-        $csv_arr = [];
-        if (($h = fopen($file, "r")) !== FALSE) {
-
-
-            $csv_arr = array();
-
+        if (($handle = fopen($file, "r")) !== FALSE) {
             $a = 0;
-            $b = 0;
-            $d = 0;
-            $razdel = 1000000;
+            $section = 1000000;
             $sql = null;
-            $f = 0;
-            $f1 = array();
-            $j = array();
-            $names = ($data = fgetcsv($h, 100000, ","));
-            $i = [];
-            while (($data = fgetcsv($h, '', ",")) !== FALSE) {
+            while (($data = fgetcsv($handle, '', ",")) !== FALSE) {
 
                 if ($a != 0) {
                     $id = !empty($data[0]) ? $this->clearString($data[0]) : null;
@@ -185,22 +173,18 @@ class ParsingProduct extends Command
                     $sql = $sql . "INSERT INTO products SET $val ON DUPLICATE KEY UPDATE $val; ";
 
                 }
-                if ($a == $razdel) {
-                    $g = DB::unprepared($sql);
+                if ($a == $section) {
+                    DB::unprepared($sql);
                     $sql = null;
                     $a = null;
-//                    $b++;
-
                 }
-
                 //Старт счетчика
                 $a++;
-                $d++;
             }
             if (!is_null($sql)) {
-                $u = DB::unprepared($sql);
+                DB::unprepared($sql);
             }
-            fclose($h);
+            fclose($handle);
         }
 
 

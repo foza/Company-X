@@ -37,9 +37,8 @@ class ParsingCategory extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-
         $finder = new Finder();
         $finder->files()->in(base_path('exports'));
         $finder->sortByChangedTime();
@@ -63,32 +62,11 @@ class ParsingCategory extends Command
      */
     private function getParse($file = null): string
     {
-        $csv_arr = [];
-        if (($h = fopen($file, "r")) !== FALSE) {
-
-
-            $csv_arr = array();
-
+        if (($handle = fopen($file, "r")) !== FALSE) {
             $a = 0;
-            $b = 0;
-            $d = 0;
-            $razdel = 1000;
+            $section = 1000;
             $sql = null;
-            $f = 0;
-            $f1 = array();
-            $j = array();
-            while (($data = fgetcsv($h, 100000, ",")) !== FALSE) {
-
-                /*
-                      0 => "id"
-                      1 => "name"
-                      2 => "url_key"
-                      3 => "description"
-                      4 => "image"
-                      5 => "parent_id"
-
-                 * */
-
+            while (($data = fgetcsv($handle, 100000, ",")) !== FALSE) {
                 if ($a != 0) {
                     $id = $data[0];
                     $name = !empty($data[1]) || isset($data[1]) ? self::clearString($data[1]) : null;
@@ -100,29 +78,22 @@ class ParsingCategory extends Command
                     $sql = $sql . "INSERT INTO category SET $val ON DUPLICATE KEY UPDATE $val; ";
 
                 }
-
-
-                if ($a == $razdel) {
+                if ($a == $section) {
                     try {
-                        $g = DB::unprepared($sql);
+                        DB::unprepared($sql);
                     } catch (\Exception $exception) {
                         exit();
                     }
                     $sql = null;
                     $a = null;
-                    $b++;
-
                 }
-
                 //Старт счетчика
                 $a++;
-                $d++;
-
             }
             if (!is_null($sql)) {
-                $u = DB::unprepared($sql);
+                DB::unprepared($sql);
             }
-            fclose($h);
+            fclose($handle);
         }
 
 

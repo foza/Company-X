@@ -23,6 +23,11 @@ class ApiController extends Controller
     private $category;
 
 
+    /**
+     * ApiController constructor.
+     * @param ProductRepository $productRepository
+     * @param CategoryRepository $categoryRepository
+     */
     public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->product = $productRepository;
