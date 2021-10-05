@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,4 +17,5 @@ use App\Http\Controllers\ProductsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/test', [ProductsController::class,'index']);
+Route::post('/product/byId', [ApiController::class,'getProduct']);
+Route::post('/product/all', [ApiController::class,'getAllProduct']);
