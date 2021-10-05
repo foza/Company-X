@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "b2c60dc6-4df6-43ee-bd80-2073a9d7ce88",
+		"name": "for export",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "get all product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"per_page\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/all?page=2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "http://127.0.0.1:8000/api/product/byId",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":16\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/product/byId",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"product",
+										"byId"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Oct 2021 11:48:47 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 05 Oct 2021 11:48:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 16,\n    \"name\": \"INTERPUMP WS102 21L 100 BAR 1450\",\n    \"category\": [\n        {\n            \"id\": 6,\n            \"name\": \"High Pressure Equipment & Spares\",\n            \"url_key\": \"high-pressure-equipment\",\n            \"description\": \"High Pressure Equipment &amp; Spares\",\n            \"image\": \"\",\n            \"parent_id\": 2,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"pivot\": {\n                \"product_id\": 16,\n                \"category_id\": 6\n            }\n        },\n        {\n            \"id\": 91,\n            \"name\": \"Interpump Pumps & Spares\",\n            \"url_key\": \"interpump-pumps-spares\",\n            \"description\": \"\",\n            \"image\": \"https://fusion.gspen.co.uk/media/catalog/category/series_47_1.jpg\",\n            \"parent_id\": 2478,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"pivot\": {\n                \"product_id\": 16,\n                \"category_id\": 91\n            }\n        },\n        {\n            \"id\": 739,\n            \"name\": \"Pumps\",\n            \"url_key\": \"pumps\",\n            \"description\": \"\",\n            \"image\": \"https://fusion.gspen.co.uk/media/catalog/category/171-048-120.jpg\",\n            \"parent_id\": 91,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"pivot\": {\n                \"product_id\": 16,\n                \"category_id\": 739\n            }\n        },\n        {\n            \"id\": 814,\n            \"name\": \"Series 47\",\n            \"url_key\": \"series-47\",\n            \"description\": \"\",\n            \"image\": \"https://fusion.gspen.co.uk/media/catalog/category/series_47.jpg\",\n            \"parent_id\": 739,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"pivot\": {\n                \"product_id\": 16,\n                \"category_id\": 814\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get product byId",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":16\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/product/byId",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"byId"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Catogory",
+			"item": [
+				{
+					"name": "category getAll()",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/category/all?page=2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/category/byId",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"category",
+								"byId"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
