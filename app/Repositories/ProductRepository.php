@@ -3,19 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\Product;
-use App\Repositories\Interfaces\ProductInterface;
+use App\Repositories\Interfaces\BaseInterface;
 
-class ProductRepository implements ProductInterface
+class ProductRepository implements BaseInterface
 {
 
 
     /**
-     * @param $productId
+     * @param $id
      * @return array
      */
-    public function get($productId): array
+    public function get($id): array
     {
-        $products = Product::find($productId);
+        $products = Product::find($id);
         $response['id'] = $products->id;
         $response['name'] = $products->name;
         $response['category'] = $products->category;

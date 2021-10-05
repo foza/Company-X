@@ -4,8 +4,8 @@
 namespace App\Repositories\Interfaces;
 
 
-interface ProductInterface
+interface BaseInterface
 {
     public function all($per_page);
-    public function get($productId);
+    public function get($id);
 }

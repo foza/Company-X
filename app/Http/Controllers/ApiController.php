@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Repositories\ProductRepository;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Repositories\ProductRepository;
+use App\Repositories\CategoryRepository;
 
 class ApiController extends Controller
 {
@@ -15,9 +16,17 @@ class ApiController extends Controller
      */
     private $product;
 
-    public function __construct(ProductRepository $productRepository)
+
+    /**
+     * @var CategoryRepository
+     */
+    private $category;
+
+
+    public function __construct(ProductRepository $productRepository, CategoryRepository $categoryRepository)
     {
         $this->product = $productRepository;
+        $this->category = $categoryRepository;
     }
 
     /**
@@ -42,6 +51,34 @@ class ApiController extends Controller
     {
         try {
             return $this->responseWithData($this->product->all($request->per_page), 200);
+        } catch (\Exception $e) {
+            return $this->responseWithMessage($e->getMessage(), 'error', 404);
+        }
+
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getAllCategory(Request $request): JsonResponse
+    {
+        try {
+            return $this->responseWithData($this->category->all($request->per_page), 200);
+        } catch (\Exception $e) {
+            return $this->responseWithMessage($e->getMessage(), 'error', 404);
+        }
+
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function getCategory(Request $request): JsonResponse
+    {
+        try {
+            return $this->responseWithData($this->category->get($request->id), 200);
         } catch (\Exception $e) {
             return $this->responseWithMessage($e->getMessage(), 'error', 404);
         }
